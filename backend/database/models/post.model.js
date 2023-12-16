@@ -1,9 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 
-const postSchema =new Sechma({
+const postSchema =new Schema({
     title:String,
     description:String,
 },{timaStamps:true});
 
-export const postModel =mongoose.model('pos',postSchema);
+ const postModel =mongoose.model('post',postSchema);
+ export default postModel 
