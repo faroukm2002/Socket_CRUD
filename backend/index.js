@@ -16,6 +16,15 @@ const io =new Server(server,{
 io.on("connection", (socket)=>{
     console.log(socket.id)
 
+    //  get posts
+    socket.on("requestPosts", async  data=>{
+        const posts=await postModel.find()
+
+        socket.emit("getPosts", posts)
+
+    })
+
+// create post
     socket.on("createPost",async(data)=>{
         const {title,description}=data 
         const post =await postModel.create({title,description})
