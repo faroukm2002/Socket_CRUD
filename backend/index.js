@@ -39,7 +39,18 @@ socket.on("deletePost", async postId => {
     io.emit("postDeleted", postID);
   });
 
+
+// update post
+socket.on("updatePost", async data => {
+    const { id, title, description } = data;
+  await postModel.findByIdAndUpdate(id, { title, description }, { new: true });
+  const updatedPost=await postModel.find({})
+    io.emit("postUpdated", updatedPost);
+  });
+  
+
 })
+  
 
 
 

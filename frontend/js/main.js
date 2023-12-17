@@ -49,6 +49,7 @@ function dispalyData(posts) {
       <h3>${post.title}</h3>
       <div class="my-2">${post.description}</div>
       <button class="btn btn-danger delete-post" onclick="deletePost('${post._id}')">Delete</button>      
+      <button class="btn btn-danger update-post" onclick="updatePost('${post._id}')">Update</button>      
 
   </div>
   </div>`;
@@ -63,6 +64,31 @@ function deletePost(id){
 
 clientIo.on("postDeleted", postID => {
   allData=postID
+  dispalyData(allData);
+});
+
+
+
+
+
+
+// Update post
+function updatePost(id)  {
+   // Replace with the actual post ID
+  const data = {
+    id,
+    title: $(".title").val(),
+    description: $(".desc").val(),
+  };
+  console.log(data);
+  clientIo.emit("updatePost", data);
+};
+
+
+
+clientIo.on("postUpdated", updatedPost => {
+  allData=updatedPost
+  
   dispalyData(allData);
 });
 
