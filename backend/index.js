@@ -31,5 +31,17 @@ io.on("connection", (socket)=>{
         io.emit("newPost",post)
     })
  
+ 
+// delete post
+socket.on("deletePost", async postId => {
+    await postModel.findByIdAndDelete(postId);
+    let postID=await postModel.find({})
+    io.emit("postDeleted", postID);
+  });
+
 })
-  
+
+
+
+
+

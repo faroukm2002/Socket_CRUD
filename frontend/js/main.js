@@ -48,8 +48,26 @@ function dispalyData(posts) {
       <div class="p-2 border border-success text-center">
       <h3>${post.title}</h3>
       <div class="my-2">${post.description}</div>
+      <button class="btn btn-danger delete-post" onclick="deletePost('${post._id}')">Delete</button>      
+
   </div>
   </div>`;
   }
   document.getElementById("rowData").innerHTML = cartona;
 }
+
+function deletePost(id){
+  console.log(id)
+  clientIo.emit("deletePost",id)
+}
+
+clientIo.on("postDeleted", postID => {
+  allData=postID
+  dispalyData(allData);
+});
+
+
+
+
+
+
