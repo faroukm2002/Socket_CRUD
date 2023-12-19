@@ -6,6 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    
+  },
+  "engines": {
+    "node": "v17.3.1"
   },
   "keywords": [],
   "author": "",
